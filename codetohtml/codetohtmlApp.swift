@@ -11,7 +11,7 @@ import SwiftUI
 struct codetohtmlApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CodeToHTMLView()
         }
     }
 }

@@ -26,10 +26,6 @@ actor ManagerFiles {
         return "\(directory)/\(file)"
     }
     
-    func generateHTML(content: String) async throws {
-        try await writeToFile(content: content)
-    }
-    
     func createFile() async throws {
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let codesDirectory = documentsDirectory.appendingPathComponent(self.directory)
@@ -40,7 +36,24 @@ actor ManagerFiles {
         }
     }
     
-    private func writeToFile(content: String) async throws {
+    func readFile() async throws -> String {
+        if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+            let fileURL = documentsDirectory.appendingPathComponent(self.path)
+            
+            do {
+                let content = try String(contentsOf: fileURL, encoding: .utf8)
+                return content
+            } catch {
+                print("Error al leer el archivo: \(error)")
+                throw UtilFilesError.errorReadingFile
+            }
+        } else {
+            throw UtilFilesError.cantGetDocumentDirectory
+        }
+    }
+    
+    func writeFile(content: String) async throws {
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             
             let fileURL = documentsDirectory.appendingPathComponent(self.path)
