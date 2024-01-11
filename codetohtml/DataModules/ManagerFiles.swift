@@ -11,15 +11,22 @@ actor ManagerFiles {
     
     var directory: String
     var file: String
+    var htmlFile: String
     
     init() {
         self.directory = "codes"
         self.file = "code.txt"
+        self.htmlFile = "swiftToHTML.txt"
     }
     
-    init(directory: String, file: String) {
+    init(
+        directory: String,
+        file: String,
+        htmlFile: String
+    ) {
         self.directory = directory
         self.file = file
+        self.htmlFile = htmlFile
     }
     
     var path: String {
