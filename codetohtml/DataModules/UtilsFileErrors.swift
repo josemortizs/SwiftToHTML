@@ -14,3 +14,10 @@ enum UtilFilesError: Error {
     case errorWritintFile
     case errorReadingFile
 }
+
+extension URL {
+    ///IMPORTANT: this code return false even if file or directory does not exist
+    var isDirectory: Bool {
+        hasDirectoryPath
+    }
+}

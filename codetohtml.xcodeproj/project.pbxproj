@@ -25,6 +25,9 @@
 		BA67235E2B4F521E00ABC9B7 /* UtilsFileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67235D2B4F521E00ABC9B7 /* UtilsFileErrors.swift */; };
 		BA67235F2B4F521E00ABC9B7 /* UtilsFileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67235D2B4F521E00ABC9B7 /* UtilsFileErrors.swift */; };
 		BA6723602B4F521E00ABC9B7 /* UtilsFileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67235D2B4F521E00ABC9B7 /* UtilsFileErrors.swift */; };
+		BAA73FBB2B55E41200AEC37B /* ManagerHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA73FBA2B55E41200AEC37B /* ManagerHTML.swift */; };
+		BAA73FBC2B55E41800AEC37B /* ManagerHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA73FBA2B55E41200AEC37B /* ManagerHTML.swift */; };
+		BAA73FBD2B55E41900AEC37B /* ManagerHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA73FBA2B55E41200AEC37B /* ManagerHTML.swift */; };
 		BAC41A372B50A0690071A1F6 /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC41A362B50A0690071A1F6 /* Temp.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +63,7 @@
 		BA6723522B4F2AAC00ABC9B7 /* ManagerFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerFiles.swift; sourceTree = "<group>"; };
 		BA6723572B4F500100ABC9B7 /* CodeToHTMLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeToHTMLViewModel.swift; sourceTree = "<group>"; };
 		BA67235D2B4F521E00ABC9B7 /* UtilsFileErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsFileErrors.swift; sourceTree = "<group>"; };
+		BAA73FBA2B55E41200AEC37B /* ManagerHTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerHTML.swift; sourceTree = "<group>"; };
 		BAC41A362B50A0690071A1F6 /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,7 @@
 			children = (
 				BA6723522B4F2AAC00ABC9B7 /* ManagerFiles.swift */,
 				BA67235D2B4F521E00ABC9B7 /* UtilsFileErrors.swift */,
+				BAA73FBA2B55E41200AEC37B /* ManagerHTML.swift */,
 			);
 			path = DataModules;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 				BA6723292B4F1D4100ABC9B7 /* CodeToHTMLView.swift in Sources */,
 				BA67235E2B4F521E00ABC9B7 /* UtilsFileErrors.swift in Sources */,
 				BA6723272B4F1D4100ABC9B7 /* codetohtmlApp.swift in Sources */,
+				BAA73FBB2B55E41200AEC37B /* ManagerHTML.swift in Sources */,
 				BA6723532B4F2AAC00ABC9B7 /* ManagerFiles.swift in Sources */,
 				BA6723582B4F500100ABC9B7 /* CodeToHTMLViewModel.swift in Sources */,
 				BAC41A372B50A0690071A1F6 /* Temp.swift in Sources */,
@@ -312,6 +318,7 @@
 				BA67235F2B4F521E00ABC9B7 /* UtilsFileErrors.swift in Sources */,
 				BA67235B2B4F501900ABC9B7 /* CodeToHTMLView.swift in Sources */,
 				BA6723592B4F500A00ABC9B7 /* CodeToHTMLViewModel.swift in Sources */,
+				BAA73FBC2B55E41800AEC37B /* ManagerHTML.swift in Sources */,
 				BA6723542B4F2AB800ABC9B7 /* ManagerFiles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +330,7 @@
 				BA6723432B4F1D4200ABC9B7 /* codetohtmlUITests.swift in Sources */,
 				BA6723452B4F1D4200ABC9B7 /* codetohtmlUITestsLaunchTests.swift in Sources */,
 				BA67235C2B4F501A00ABC9B7 /* CodeToHTMLView.swift in Sources */,
+				BAA73FBD2B55E41900AEC37B /* ManagerHTML.swift in Sources */,
 				BA6723552B4F2ABB00ABC9B7 /* ManagerFiles.swift in Sources */,
 				BA6723602B4F521E00ABC9B7 /* UtilsFileErrors.swift in Sources */,
 				BA67235A2B4F501000ABC9B7 /* CodeToHTMLViewModel.swift in Sources */,

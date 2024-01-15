@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppKit
 
 actor ManagerFiles {
     
@@ -60,6 +61,11 @@ actor ManagerFiles {
         }
     }
     
+    func writeFile(content: [String]) async throws {
+        let joined: String = content.joined(separator: "\n")
+        try await writeFile(content: joined)
+    }
+    
     func writeFile(content: String) async throws {
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             
@@ -68,12 +74,29 @@ actor ManagerFiles {
             do {
                 try content.write(to: fileURL, atomically: false, encoding: .utf8)
                 print("Contenido del archivo actualizado.")
+                showInFinder()
             } catch {
                 print("Error al escribir en el archivo: \(error)")
                 throw UtilFilesError.errorWritintFile
             }
         } else {
             throw UtilFilesError.cantGetDocumentDirectory
+        }
+    }
+    
+    func showInFinder() {
+        if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            showInFinder(url: documentsDirectory.appendingPathComponent(self.path))
+        }
+    }
+    
+    func showInFinder(url: URL?) {
+        guard let url = url else { return }
+        
+        if url.isDirectory {
+            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.path)
+        } else {
+            NSWorkspace.shared.activateFileViewerSelecting([url])
         }
     }
     

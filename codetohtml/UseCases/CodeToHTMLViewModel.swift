@@ -42,11 +42,14 @@ final class CodeToHTMLViewModel: ObservableObject {
     }
     
     func generateHTMLCode() {
-        var lines: [String] = getLines()
-        lines = replaceSpaces(lines: lines)
-        lines = addLineBreak(lines: lines)
-        lines = replaceKeywords(lines: lines)
-        printLines(lines: lines)
+        Task {
+            var lines: [String] = getLines()
+            lines = replaceSpaces(lines: lines)
+            lines = addLineBreak(lines: lines)
+            lines = replaceKeywords(lines: lines)
+            printLines(lines: lines)
+            try? await fileManager.writeFile(content: lines)
+        }
     }
     
     private func replaceKeywords(lines: [String]) -> [String] {
