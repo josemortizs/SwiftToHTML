@@ -16,7 +16,7 @@ struct CodeToHTMLView: View {
             TextEditor(text: $viewmodel.code)
             
             Button {
-                viewmodel.generateHTMLCode()
+                Task { await viewmodel.generateHTMLCode() }
             } label: {
                 Text("Generar HTML")
             }

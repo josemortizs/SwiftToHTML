@@ -11,13 +11,16 @@ import Combine
 final class CodeToHTMLViewModel: ObservableObject {
     
     @Published var code: String
+    @Published var html: String = ""
     
     var fileManager: ManagerFiles
+    var htmlManager: ManagerHTML
     let keyWords: [String: String]
     
     init() {
         self.code = ""
         self.fileManager = ManagerFiles()
+        self.htmlManager = ManagerHTML()
         self.keyWords = [
             "struct&nbsp;": "<span class='class-key'>struct</span>&nbsp;",
             "var&nbsp;": "<span class='class-key'>var</span>&nbsp;",
@@ -27,9 +30,15 @@ final class CodeToHTMLViewModel: ObservableObject {
         ]
     }
     
-    init(code: String, fileManager: ManagerFiles, keyWords: [String: String]) {
+    init(
+        code: String,
+        fileManager: ManagerFiles,
+        htmlManager: ManagerHTML,
+        keyWords: [String: String]
+    ) {
         self.code = code
         self.fileManager = fileManager
+        self.htmlManager = htmlManager
         self.keyWords = keyWords
     }
     
@@ -41,29 +50,11 @@ final class CodeToHTMLViewModel: ObservableObject {
         }
     }
     
-    func generateHTMLCode() {
-        Task {
-            var lines: [String] = getLines()
-            lines = replaceSpaces(lines: lines)
-            lines = addLineBreak(lines: lines)
-            lines = replaceKeywords(lines: lines)
-            printLines(lines: lines)
-            try? await fileManager.writeFile(content: lines)
-        }
-    }
-    
-    private func replaceKeywords(lines: [String]) -> [String] {
-        lines.map { line in
-            replaceKeywords(line: line)
-        }
-    }
-    
-    private func replaceKeywords(line: String) -> String {
-        var line = line
-        for (keyword, replacement) in keyWords {
-            line = line.replacingOccurrences(of: keyword, with: replacement)
-        }
-        return line
+    func generateHTMLCode() async {
+        let html = await htmlManager.generateHTMLCode(code: code, keyWords: keyWords)
+        self.html = html
+        print(html)
+        try? await fileManager.writeFile(content: html)
     }
     
     private func getStringInLineText(line: String) -> String? {
@@ -72,23 +63,5 @@ final class CodeToHTMLViewModel: ObservableObject {
             return String(line[range])
         }
         return nil
-    }
-    
-    private func addLineBreak(lines: [String]) -> [String] {
-        lines.map { $0 + "<br>" }
-    }
-    
-    private func replaceSpaces(lines: [String]) -> [String] {
-        lines.map { $0.replacingOccurrences(of: " ", with: "&nbsp;") }
-    }
-    
-    private func getLines() -> [String] {
-        code.components(separatedBy: "\n")
-    }
-    
-    private func printLines(lines: [String]) {
-        for line in lines {
-            print(line)
-        }
     }
 }
