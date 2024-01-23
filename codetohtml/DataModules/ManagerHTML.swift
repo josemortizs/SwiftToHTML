@@ -14,6 +14,7 @@ actor ManagerHTML {
         lines = await replaceSpaces(lines: lines)
         lines = await addLineBreak(lines: lines)
         lines = await replaceKeywords(lines: lines, keyWords: keyWords)
+        lines = await replacesLiterals(on: lines, with: "literal-key")
         
         let joined: String = lines.joined(separator: "\n")
         return joined
@@ -43,5 +44,23 @@ actor ManagerHTML {
             line = line.replacingOccurrences(of: keyword, with: replacement)
         }
         return line
+    }
+    
+    private func replacesLiterals(on lines: [String], with cssClass: String) async -> [String] {
+        lines.map { line in
+            if let literal = getStringInLineText(line: line) {
+                return replaceKeywords(line: line, keyWords: ["\"\(literal)\"": "<span class='\(cssClass)'>\"\(literal)\"</span>"])
+            } else {
+                return line
+            }
+        }
+    }
+    
+    private func getStringInLineText(line: String) -> String? {
+        if let firstDoubleQuote = line.firstIndex(of: "\""), let lastDoubleQuote = line.lastIndex(of: "\""), firstDoubleQuote != lastDoubleQuote {
+            let range = (line.index(after: firstDoubleQuote)..<lastDoubleQuote)
+            return String(line[range])
+        }
+        return nil
     }
 }
