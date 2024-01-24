@@ -9,12 +9,16 @@ import Foundation
 
 actor ManagerHTML {
     
-    func generateHTMLCode(code: String, keyWords: [String: String]) async -> String {
+    func generateHTMLCode(
+        code: String,
+        keyWords: [String: String],
+        keyLiterals: String
+    ) async -> String {
         var lines: [String] = await getLinesWithLinebreak(text: code)
         lines = await replaceSpaces(lines: lines)
         lines = await addLineBreak(lines: lines)
         lines = await replaceKeywords(lines: lines, keyWords: keyWords)
-        lines = await replacesLiterals(on: lines, with: "literal-key")
+        lines = await replacesLiterals(on: lines, with: keyLiterals)
         
         let joined: String = lines.joined(separator: "\n")
         return joined

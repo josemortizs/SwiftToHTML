@@ -52,7 +52,7 @@ final class CodeToHTMLViewModel: ObservableObject {
     }
     
     func generateHTMLCode() async {
-        let html = await htmlManager.generateHTMLCode(code: code, keyWords: keyWords)
+        let html = await htmlManager.generateHTMLCode(code: code, keyWords: keyWords, keyLiterals: "literal-key")
         self.html = html
         print(html)
         try? await fileManager.writeFile(content: html)
