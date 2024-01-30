@@ -19,9 +19,19 @@ actor ManagerHTML {
         lines = await addLineBreak(lines: lines)
         lines = await replaceKeywords(lines: lines, keyWords: keyWords)
         lines = await replacesLiterals(on: lines, with: keyLiterals)
+        lines = await generateContainer(lines: lines)
         
         let joined: String = lines.joined(separator: "\n")
         return joined
+    }
+    
+    private func generateContainer(lines: [String]) async -> [String] {
+        var container = [String]()
+        container.append("<div class=\"code-block\">")
+        container.append(contentsOf: lines)
+        container.append("</div>")
+        
+        return container
     }
     
     private func getLinesWithLinebreak(text: String) async -> [String] {
